@@ -8,6 +8,11 @@ class BookInstanceAdmin(admin.ModelAdmin):
     list_display = ['uuid', 'book', 'due_back', 'status']
     list_filter = ['due_back', 'status']
 
+    fieldsets = (
+        ('General', {'fields': ('uuid', 'book')}),
+        ('Availability', {'fields': ('status', 'due_back')}),
+    )
+
 # Register your models here.
 admin.site.register(Author)
 admin.site.register(Book, BookAdmin)
