@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 
+
 # Create your models here.
 
 class Author(models.Model):
@@ -10,16 +11,25 @@ class Author(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
+    class Meta:
+        verbose_name = "Autorius"
+        verbose_name_plural = "Autoriai"
+
 
 class Book(models.Model):
     title = models.CharField(verbose_name="Pavadinimas", max_length=200)
     summary = models.TextField(verbose_name="Aprašymas", max_length=1000, help_text='Trumpas knygos aprašymas')
-    isbn = models.CharField(verbose_name="ISBN", max_length=13, help_text='13 Simbolių <a href="https://www.isbn-international.org/content/what-isbn">ISBN kodas</a>')
+    isbn = models.CharField(verbose_name="ISBN", max_length=13,
+                            help_text='13 Simbolių <a href="https://www.isbn-international.org/content/what-isbn">ISBN kodas</a>')
     author = models.ForeignKey(to="Author", verbose_name="Autorius", on_delete=models.SET_NULL, null=True, blank=True)
     genre = models.ManyToManyField(to="Genre", verbose_name="Žanrai", help_text='Išrinkite žanrą(us) šiai knygai')
 
     def __str__(self):
         return f"{self.title} ({self.author})"
+
+    class Meta:
+        verbose_name = "Knyga"
+        verbose_name_plural = "Knygos"
 
 
 class Genre(models.Model):
@@ -27,6 +37,10 @@ class Genre(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = "Žanras"
+        verbose_name_plural = "Žanrai"
 
 
 class BookInstance(models.Model):
@@ -40,7 +54,12 @@ class BookInstance(models.Model):
         ('r', 'Rezervuota'),
     )
 
-    status = models.CharField(verbose_name="Būsena", choices=LOAN_STATUS, max_length=1, blank=True, default="a", help_text='Statusas')
+    status = models.CharField(verbose_name="Būsena", choices=LOAN_STATUS, max_length=1, blank=True, default="a",
+                              help_text='Statusas')
 
     def __str__(self):
         return f"{self.uuid} - {self.book}"
+
+    class Meta:
+        verbose_name = "Knygos kopija"
+        verbose_name_plural = "Knygos kopijos"
