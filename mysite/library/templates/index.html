@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block "title" %}PRADŽIA{% endblock %}
+
+{% block "content" %}
+<h1 class="display-5">Šiuo metu turime:</h1>
+<ul class="list-group list-group-flush">
+    <li class="list-group-item"><b>Knygų: {{ num_books }}</b></li>
+    <li class="list-group-item"><b>Kopijų: {{ num_instances }}</b></li>
+    <li class="list-group-item"><b>Laisvų knygų: {{ num_instances_available }}</b></li>
+    <li class="list-group-item"><b>Autorių: {{ num_authors }}</b></li>
+</ul>
+{% endblock %}
