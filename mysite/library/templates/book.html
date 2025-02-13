@@ -14,7 +14,14 @@
 {% if book.copies.all %}
 <h4>Kopijos:</h4>
 {% for copy in book.copies.all %}
-<p>{{ copy }}</p>
+<div class="pb-1">
+<hr>
+<p class="{% if copy.status == 'g' %}text-success{% elif copy.status == 'p' %}text-danger{% elif copy.status == 'r' %}text-warning{% endif %}">{{ copy.get_status_display }}</p>
+{% if copy.due_back %}
+<p>{{ copy.due_back }}</p>
+{% endif %}
+<small class="text-muted"><strong>ID: </strong>{{ copy.uuid }}</small>
+</div>
 {% endfor %}
 {% else %}
 <h4>Kopijų nėra</h4>
