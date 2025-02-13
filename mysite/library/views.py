@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from .models import Book, BookInstance, Author
 
 # Create your views here.
@@ -14,7 +13,8 @@ def index(request):
         "num_instances": num_instances,
         "num_instances_available": num_instances_available,
         "num_authors": num_authors,
-
     }
     return render(request, template_name="index.html", context=my_context)
-    # return HttpResponse(f"<h1>Labas, pasauli! Laba diena</h1><p>{num_books}, {num_instances}, {num_instances_available}, {num_authors}</p>")
+
+def authors(request):
+    return render(request, template_name="authors.html", context={'authors': Author.objects.all()})
