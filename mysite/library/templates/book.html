@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block "title" %}Knyga{% endblock %}
+
+{% block "content" %}
+<h1 class="display-5">Knyga</h1>
+<ul class="list-group list-group-flush">
+    <li class="list-group-item"><b>Pavadinimas:</b> {{ book.title }}</li>
+    <li class="list-group-item"><b>Autorius:</b> {{ book.author }}</li>
+    <li class="list-group-item"><b>ISBN:</b> {{ book.isbn }}</li>
+    <li class="list-group-item"><b>Žanrai:</b> {{ book.display_genre }}</li>
+    <li class="list-group-item"><b>Aprašymas:</b> {{ book.summary }}</li>
+</ul>
+{% if book.copies.all %}
+<h4>Kopijos:</h4>
+{% for copy in book.copies.all %}
+<p>{{ copy }}</p>
+{% endfor %}
+{% else %}
+<h4>Kopijų nėra</h4>
+{% endif %}
+{% endblock %}

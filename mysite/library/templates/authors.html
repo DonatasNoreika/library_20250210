@@ -5,7 +5,7 @@
 {% block "content" %}
 <h1 class="display-5">Autoriai:</h1>
 {% for author in authors %}
-<a href="{% url 'author' author.pk %}"><p>Autorius: {{ author.last_name }} {{ author.first_name }}</p></a>
+<a href="{% url 'author' author.pk %}"><p>{{ author.last_name }} {{ author.first_name }}</p></a>
 <hr>
 {% endfor %}
 {% endblock %}

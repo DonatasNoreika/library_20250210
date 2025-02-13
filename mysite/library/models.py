@@ -57,7 +57,7 @@ class Genre(models.Model):
 class BookInstance(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, help_text='Unikalus ID knygos kopijai')
     due_back = models.DateField(verbose_name="Bus prieinama", null=True, blank=True)
-    book = models.ForeignKey(to="Book", verbose_name="Knyga", on_delete=models.CASCADE)
+    book = models.ForeignKey(to="Book", verbose_name="Knyga", on_delete=models.CASCADE, related_name="copies")
     LOAN_STATUS = (
         ('a', 'Administruojama'),
         ('p', 'Paimta'),
