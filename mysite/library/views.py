@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Book, BookInstance, Author
 
+
 # Create your views here.
 
 def index(request):
@@ -16,5 +17,14 @@ def index(request):
     }
     return render(request, template_name="index.html", context=my_context)
 
+
 def authors(request):
     return render(request, template_name="authors.html", context={'authors': Author.objects.all()})
+
+
+def author(request, author_id):
+    author = Author.objects.get(pk=author_id)
+    context = {
+        "author": author,
+    }
+    return render(request, template_name="author.html", context=context)
