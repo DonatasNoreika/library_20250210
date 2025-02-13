@@ -12,6 +12,6 @@
 <hr>
 <h4>Knygos:</h4>
 {% for book in author.books.all %}
-<p>{{ book.title }}</p>
+<a href="{% url 'book' book.pk %}"><p>{{ book.title }}</p></a>
 {% endfor %}
 {% endblock %}
