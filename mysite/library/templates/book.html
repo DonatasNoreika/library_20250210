@@ -3,6 +3,9 @@
 {% block "title" %}Knyga{% endblock %}
 
 {% block "content" %}
+{% if book.cover %}
+<img class="card-img-top" style="max-width: 20%" src="{{ book.cover.url }}">
+{% endif %}
 <h1 class="display-5">Knyga</h1>
 <ul class="list-group list-group-flush">
     <li class="list-group-item"><b>Pavadinimas:</b> {{ book.title }}</li>
