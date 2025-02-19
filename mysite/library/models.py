@@ -74,7 +74,7 @@ class BookInstance(models.Model):
                               help_text='Statusas')
 
     def is_overdue(self):
-        return self.due_back and self.due_back < date.today()
+        return self.due_back and self.due_back <= date.today()
 
     def __str__(self):
         return f"{self.uuid} - {self.book}"

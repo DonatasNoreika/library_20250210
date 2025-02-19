@@ -5,6 +5,6 @@
 {% block "content" %}
 <h1>Mano paimtos knygos:</h1>
 {% for copy in copies %}
-<p>{{ copy }}</p>
+<p class="{% if copy.is_overdue %}text-danger{% endif %}">{{ copy.book }} - {{ copy.due_back }} ({{ copy.uuid }})</p>
 {% endfor %}
 {% endblock %}
