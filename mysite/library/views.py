@@ -3,6 +3,8 @@ from .models import Book, BookInstance, Author
 from django.views import generic
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 # Create your views here.
 
@@ -65,3 +67,13 @@ def search(request):
         "authors": author_search_results,
     }
     return render(request, template_name="search.html", context=context)
+
+
+class MyBookInstanceListView(LoginRequiredMixin, generic.ListView):
+    model = BookInstance
+    template_name = "my_copies.html"
+    context_object_name = "copies"
+
+    def get_queryset(self):
+        return BookInstance.objects.filter(reader=self.request.user)
+
