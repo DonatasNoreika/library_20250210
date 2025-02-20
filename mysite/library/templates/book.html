@@ -15,6 +15,19 @@
     <li class="list-group-item"><b>Aprašymas:</b> {{ book.summary }}</li>
 </ul>
 
+{% if user.is_authenticated %}
+<div class="fieldWrapper">
+    <hr><br/>
+    <h4>Palikite atsiliepimą</h4>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.content }}
+        <br>
+        <input type="submit" value="Paskelbti">
+    </form>
+</div>
+{% endif %}
+
 {% if book.reviews.all %}
 <h4>Komentarai:</h4>
 {% for review in book.reviews.all %}
@@ -24,7 +37,6 @@
 {% else %}
 <h4>Komentarų nėra</h4>
 {% endif %}
-
 
 {% if book.copies.all %}
 <h4>Kopijos:</h4>
