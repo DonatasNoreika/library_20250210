@@ -14,6 +14,18 @@
     <li class="list-group-item"><b>Žanrai:</b> {{ book.display_genre }}</li>
     <li class="list-group-item"><b>Aprašymas:</b> {{ book.summary }}</li>
 </ul>
+
+{% if book.reviews.all %}
+<h4>Komentarai:</h4>
+{% for review in book.reviews.all %}
+<p><strong>{{ review.reviewer }}</strong>, <em>{{ review.date_created }}</em></p>
+<p>{{ review.content }}</p>
+{% endfor %}
+{% else %}
+<h4>Komentarų nėra</h4>
+{% endif %}
+
+
 {% if book.copies.all %}
 <h4>Kopijos:</h4>
 {% for copy in book.copies.all %}

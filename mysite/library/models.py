@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from datetime import date
 from tinymce.models import HTMLField
 
+
 # Create your models here.
 
 class Author(models.Model):
@@ -82,3 +83,15 @@ class BookInstance(models.Model):
     class Meta:
         verbose_name = "Knygos kopija"
         verbose_name_plural = "Knygos kopijos"
+
+
+class BookReview(models.Model):
+    book = models.ForeignKey(to="Book", verbose_name='Knyga', on_delete=models.CASCADE, related_name="reviews")
+    reviewer = models.ForeignKey(to=User, verbose_name="Komentatorius", on_delete=models.CASCADE)
+    date_created = models.DateTimeField(verbose_name="Data", auto_now_add=True)
+    content = models.TextField(verbose_name="Atsiliepimas", max_length=2000)
+
+    class Meta:
+        verbose_name = "Atsiliepimas"
+        verbose_name_plural = "Atsiliepimai"
+        ordering = ['-date_created']
