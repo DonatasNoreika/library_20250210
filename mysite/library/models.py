@@ -6,6 +6,16 @@ from tinymce.models import HTMLField
 
 
 # Create your models here.
+class Profile(models.Model):
+    user = models.OneToOneField(to=User, on_delete=models.CASCADE)
+    photo = models.ImageField(verbose_name="Nuotrauka", upload_to="profile_pics", default="profile_pics/default.png")
+
+    def __str__(self):
+        return f"{self.user.username} profilis"
+
+    class Meta:
+        verbose_name = "Profilis"
+        verbose_name_plural = "Profiliai"
 
 class Author(models.Model):
     first_name = models.CharField(verbose_name="Vardas", max_length=100)

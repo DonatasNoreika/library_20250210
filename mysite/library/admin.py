@@ -1,5 +1,10 @@
 from django.contrib import admin
-from .models import Author, Book, Genre, BookInstance, BookReview
+from .models import (Author,
+                     Book,
+                     Genre,
+                     BookInstance,
+                     BookReview,
+                     Profile)
 
 class BookInstanceInLine(admin.TabularInline):
     model = BookInstance
@@ -35,3 +40,4 @@ admin.site.register(Author, AuthorAdmin)
 admin.site.register(Book, BookAdmin)
 admin.site.register(Genre)
 admin.site.register(BookInstance, BookInstanceAdmin)
+admin.site.register(Profile)

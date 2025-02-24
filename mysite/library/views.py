@@ -10,6 +10,8 @@ from django.contrib import messages
 from django.contrib.auth import password_validation
 from django.views.generic.edit import FormMixin
 from .forms import BookReviewForm
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
@@ -132,3 +134,7 @@ def register(request):
             return redirect("register")
 
     return render(request, template_name="register.html")
+
+@login_required
+def profile(request):
+    return render(request, template_name="profile.html")
