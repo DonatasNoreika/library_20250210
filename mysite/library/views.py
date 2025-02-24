@@ -139,6 +139,13 @@ def register(request):
 def profile(request):
     if request.method == "POST":
         u_form = UserUpdateForm(request.POST, instance=request.user)
+        new_email = request.POST["email"]
+        if not new_email:
+            messages.error(request, "El. paštas negali būti tuščias!")
+            return redirect("profile")
+        if request.user.email != new_email and User.objects.filter(email=new_email).exists():
+            messages.error(request, message=f'Vartotojas su el. paštu {new_email} jau užregistruotas!')
+            return redirect("profile")
         if u_form.is_valid():
             u_form.save()
             messages.info(request, "Profilis atnaujintas")
