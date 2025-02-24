@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import password_validation
 from django.views.generic.edit import FormMixin
-from .forms import BookReviewForm
+from .forms import BookReviewForm, UserUpdateForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -137,4 +137,13 @@ def register(request):
 
 @login_required
 def profile(request):
-    return render(request, template_name="profile.html")
+    if request.method == "POST":
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        if u_form.is_valid():
+            u_form.save()
+            messages.info(request, "Profilis atnaujintas")
+            return redirect("profile")
+    context = {
+        "u_form": UserUpdateForm(instance=request.user)
+    }
+    return render(request, template_name="profile.html", context=context)
