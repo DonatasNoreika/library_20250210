@@ -3,6 +3,7 @@
 {% block "title" %}Egzemplioriai{% endblock %}
 
 {% block "content" %}
+<a class="btn btn-secondary btn-sm mt-1 mb-1 col-lg-2" href="{% url 'instance_new' %}">Naujas egzempliorius</a>
 <h1>Knygų egzemplioriai:</h1>
 {% for instance in instances %}
 <a href="{% url 'instance' instance.pk %}"><p>{{ instance.book }} - {{ instance.due_back }} ({{ instance.uuid }})</p></a>
