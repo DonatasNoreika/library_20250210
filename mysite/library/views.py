@@ -4,7 +4,7 @@ from .models import Book, BookInstance, Author
 from django.views import generic
 from django.core.paginator import Paginator
 from django.db.models import Q
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import password_validation
@@ -157,3 +157,16 @@ def profile(request):
         "p_form": ProfileUpdateForm(instance=request.user.profile),
     }
     return render(request, template_name="profile.html", context=context)
+
+
+class BookInstanceListView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+    model = BookInstance
+    template_name = "instances.html"
+    context_object_name = "instances"
+
+    def test_func(self):
+        return self.request.user.profile.is_employee
+
+
+
+

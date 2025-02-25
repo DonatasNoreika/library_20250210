@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block "title" %}Egzemplioriai{% endblock %}
+
+{% block "content" %}
+<h1>Knygų egzemplioriai:</h1>
+{% for instance in instances %}
+<p>{{ instance.book }} - {{ instance.due_back }} ({{ instance.uuid }})</p>
+{% endfor %}
+{% endblock %}

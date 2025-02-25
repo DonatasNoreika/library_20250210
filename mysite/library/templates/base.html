@@ -48,6 +48,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'mycopies' %}">Mano knygos</a>
                 </li>
+                {% if user.profile.is_employee %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'instances' %}">Knygų egzemplioriai</a>
+                </li>
+                {% endif %}
                 <li class="nav-item">
                     <form method="post" action="{% url 'logout' %}">
                         {% csrf_token %}

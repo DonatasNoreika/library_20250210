@@ -9,6 +9,7 @@ from PIL import Image
 class Profile(models.Model):
     user = models.OneToOneField(to=User, on_delete=models.CASCADE)
     photo = models.ImageField(verbose_name="Nuotrauka", upload_to="profile_pics", default="profile_pics/default.png")
+    is_employee = models.BooleanField(verbose_name="Ar darbuotojas", default=False)
 
     def __str__(self):
         return f"{self.user.username} profilis"
