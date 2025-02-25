@@ -113,6 +113,9 @@ class BookReview(models.Model):
     date_created = models.DateTimeField(verbose_name="Data", auto_now_add=True)
     content = models.TextField(verbose_name="Atsiliepimas", max_length=2000)
 
+    def __str__(self):
+        return f"{self.reviewer} - {self.book} ({self.date_created})"
+
     class Meta:
         verbose_name = "Atsiliepimas"
         verbose_name_plural = "Atsiliepimai"

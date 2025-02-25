@@ -227,3 +227,15 @@ class BookReviewUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.Upda
 
     def test_func(self):
         return self.get_object().reviewer == self.request.user
+
+
+class BookReviewDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = BookReview
+    context_object_name = "review"
+    template_name = "review_delete.html"
+
+    def get_success_url(self):
+        return reverse('book', kwargs={"pk": self.object.book.pk})
+
+    def test_func(self):
+        return self.get_object().reviewer == self.request.user
