@@ -86,8 +86,11 @@ class BookDetailView(FormMixin, generic.DetailView):
 
 def search(request):
     query = request.GET.get("query")
-    book_search_results = Book.objects.filter(Q(title__icontains=query) | Q(summary__icontains=query) | Q(author__first_name__icontains=query) | Q(author__last_name__icontains=query))
-    author_search_results = Author.objects.filter(Q(first_name__icontains=query) | Q(last_name__icontains=query) | Q(description__icontains=query))
+    book_search_results = Book.objects.filter(
+        Q(title__icontains=query) | Q(summary__icontains=query) | Q(author__first_name__icontains=query) | Q(
+            author__last_name__icontains=query))
+    author_search_results = Author.objects.filter(
+        Q(first_name__icontains=query) | Q(last_name__icontains=query) | Q(description__icontains=query))
     context = {
         "query": query,
         "books": book_search_results,
@@ -103,6 +106,7 @@ class MyBookInstanceListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return BookInstance.objects.filter(reader=self.request.user)
+
 
 @csrf_protect
 def register(request):
@@ -134,6 +138,7 @@ def register(request):
             return redirect("register")
 
     return render(request, template_name="register.html")
+
 
 @login_required
 def profile(request):
@@ -176,6 +181,7 @@ class BookInstanceDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.De
     def test_func(self):
         return self.request.user.profile.is_employee
 
+
 class BookInstanceCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
     model = BookInstance
     fields = ['book', 'status', 'due_back', 'reader']
@@ -190,13 +196,21 @@ class BookInstanceUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.Up
     model = BookInstance
     fields = ['book', 'status', 'due_back', 'reader']
     template_name = "instance_form.html"
+
     # success_url = "/library/instances/"
 
     def get_success_url(self):
         return reverse('instance', kwargs={"pk": self.object.pk})
 
+    def test_func(self):
+        return self.request.user.profile.is_employee
 
 
+class BookInstanceDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = BookInstance
+    success_url = "/library/instances/"
+    context_object_name = "instance"
+    template_name = "instance_delete.html"
 
     def test_func(self):
         return self.request.user.profile.is_employee
