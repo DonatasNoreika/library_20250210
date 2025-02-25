@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from django.views.decorators.csrf import csrf_protect
-from .models import Book, BookInstance, Author
+from .models import Book, BookInstance, Author, BookReview
 from django.views import generic
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -214,3 +214,16 @@ class BookInstanceDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.De
 
     def test_func(self):
         return self.request.user.profile.is_employee
+
+
+class BookReviewUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+    model = BookReview
+    fields = ['content']
+    template_name = "review_update.html"
+    # success_url = "/library/books/"
+
+    def get_success_url(self):
+        return reverse('book', kwargs={"pk": self.object.book.pk})
+
+    def test_func(self):
+        return self.get_object().reviewer == self.request.user
