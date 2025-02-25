@@ -5,6 +5,6 @@
 {% block "content" %}
 <h1>Knygų egzemplioriai:</h1>
 {% for instance in instances %}
-<p>{{ instance.book }} - {{ instance.due_back }} ({{ instance.uuid }})</p>
+<a href="{% url 'instance' instance.pk %}"><p>{{ instance.book }} - {{ instance.due_back }} ({{ instance.uuid }})</p></a>
 {% endfor %}
 {% endblock %}

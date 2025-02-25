@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block "title" %}Knygos egzempliorius{% endblock %}
+
+{% block "content" %}
+<h1 class="display-5">Knygos egzempliorius</h1>
+<ul class="list-group list-group-flush">
+    <li class="list-group-item"><b>Knyga:</b> {{ instance.book }}</li>
+    <li class="list-group-item"><b>UUID:</b> {{ instance.uuid }}</li>
+    <li class="list-group-item"><b>Būsena:</b> {{ instance.get_status_display }}</li>
+    {% if instance.due_back %}
+    <li class="list-group-item {% if instance.is_overdue %}text-danger{% endif %}"><b>Terminas:</b> {{ instance.due_back }}</li>
+    {% endif %}
+    {% if instance.reader %}
+    <li class="list-group-item"><b>Skaitytojas:</b> <img class="rounded-circle" style="width: 30px" src="{{ instance.reader.profile.photo.url }}">  {{ instance.reader }}</li>
+    {% endif %}
+</ul>
+<hr>
+{% endblock %}
