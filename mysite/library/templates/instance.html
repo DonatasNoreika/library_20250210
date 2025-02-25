@@ -14,6 +14,8 @@
     {% if instance.reader %}
     <li class="list-group-item"><b>Skaitytojas:</b> <img class="rounded-circle" style="width: 30px" src="{{ instance.reader.profile.photo.url }}">  {{ instance.reader }}</li>
     {% endif %}
+    <div>
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'instance_update' instance.pk %}">Redaguoti</a>
+    </div>
 </ul>
-<hr>
 {% endblock %}

@@ -185,3 +185,18 @@ class BookInstanceCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.Cr
     def test_func(self):
         return self.request.user.profile.is_employee
 
+
+class BookInstanceUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+    model = BookInstance
+    fields = ['book', 'status', 'due_back', 'reader']
+    template_name = "instance_form.html"
+    # success_url = "/library/instances/"
+
+    def get_success_url(self):
+        return reverse('instance', kwargs={"pk": self.object.pk})
+
+
+
+
+    def test_func(self):
+        return self.request.user.profile.is_employee
