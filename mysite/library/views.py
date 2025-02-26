@@ -11,7 +11,7 @@ from django.contrib.auth import password_validation
 from django.views.generic.edit import FormMixin
 from .forms import BookReviewForm, UserUpdateForm, ProfileUpdateForm, BookInstanceCreateUpdateForm
 from django.contrib.auth.decorators import login_required
-
+from django.utils.translation import gettext as _
 
 # Create your views here.
 
@@ -117,11 +117,11 @@ def register(request):
         password2 = request.POST['password2']
         if password == password2:
             if User.objects.filter(username=username).exists():
-                messages.error(request, message=f'Vartotojo vardas {username} užimtas!')
+                messages.error(request, message=_('Username %s already exists!') % username)
                 return redirect("register")
             else:
                 if User.objects.filter(email=email).exists():
-                    messages.error(request, message=f'Vartotojas su el. paštu {email} jau užregistruotas!')
+                    messages.error(request, message=_('Email %s already exists!') % email)
                     return redirect("register")
                 else:
                     try:
@@ -131,10 +131,10 @@ def register(request):
                             messages.error(request, error)
                             return redirect("register")
                     User.objects.create_user(username=username, email=email, password=password)
-                    messages.info(request, f'Vartotojas {username} užregistruotas!')
+                    messages.info(request, _('Username %s registered!') % username)
                     return redirect("login")
         else:
-            messages.error(request, message="Slaptažodžiai nesutampa!")
+            messages.error(request, message=_("Passwords do not match!"))
             return redirect("register")
 
     return render(request, template_name="register.html")
