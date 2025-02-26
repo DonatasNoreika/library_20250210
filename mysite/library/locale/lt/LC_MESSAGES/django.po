@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-26 09:52+0200\n"
-"PO-Revision-Date: 2025-02-26 09:54+0200\n"
+"POT-Creation-Date: 2025-02-26 10:26+0200\n"
+"PO-Revision-Date: 2025-02-26 10:31+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: lt\n"
@@ -19,6 +19,134 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && (n%100<11 || n%100>19) ? 0 : "
 "n%10>=2 && n%10<=9 && (n%100<11 || n%100>19) ? 1 : 2);\n"
 "X-Generator: Poedit 3.5\n"
+
+#: .\models.py:13
+msgid "Image"
+msgstr "Nuotrauka"
+
+#: .\models.py:14
+msgid "Is Employee"
+msgstr "Ar darbuotojas"
+
+#: .\models.py:20
+msgid "Profile"
+msgstr "Profilis"
+
+#: .\models.py:21
+msgid "Profiles"
+msgstr "Profiliai"
+
+#: .\models.py:34
+msgid "First Name"
+msgstr "Vardas"
+
+#: .\models.py:35
+msgid "Last Name"
+msgstr "Pavardė"
+
+#: .\models.py:36
+msgid "Description"
+msgstr "Aprašymas"
+
+#: .\models.py:41 .\models.py:71 .\templates\base.html:38
+msgid "Books"
+msgstr "Knygos"
+
+#: .\models.py:47 .\models.py:56
+msgid "Author"
+msgstr "Autorius"
+
+#: .\models.py:48 .\templates\base.html:35
+msgid "Authors"
+msgstr "Autoriai"
+
+#: .\models.py:52
+msgid "Title"
+msgstr "Pavadinimas"
+
+#: .\models.py:53
+msgid "Summary"
+msgstr "Aprašymas"
+
+#: .\models.py:53
+msgid "Short book description"
+msgstr "Trumpas knygos aprašymas"
+
+#: .\models.py:58 .\models.py:64 .\models.py:82
+msgid "Genres"
+msgstr "Žanrai"
+
+#: .\models.py:59
+msgid "Cover"
+msgstr "Viršelis"
+
+#: .\models.py:70 .\models.py:88 .\models.py:113
+msgid "Book"
+msgstr "Knyga"
+
+#: .\models.py:75
+msgid "Name"
+msgstr "Pavadinimas"
+
+#: .\models.py:81
+msgid "Genre"
+msgstr "Žanras"
+
+#: .\models.py:87
+msgid "Due Back"
+msgstr "Gražinimo data"
+
+#: .\models.py:89
+msgid "Reader"
+msgstr "Skaitytojas"
+
+#: .\models.py:91
+msgid "Administered"
+msgstr "Administruojama"
+
+#: .\models.py:92
+msgid "Taken"
+msgstr "Paimta"
+
+#: .\models.py:93
+msgid "Free"
+msgstr "Galima paimti"
+
+#: .\models.py:94
+msgid "Reserved"
+msgstr "Reservuota"
+
+#: .\models.py:97
+msgid "Status"
+msgstr "Būsena"
+
+#: .\models.py:107
+msgid "Instance"
+msgstr "Kopija"
+
+#: .\models.py:108 .\templates\base.html:54
+msgid "Instances"
+msgstr "Kopijos"
+
+#: .\models.py:114
+msgid "Reviewer"
+msgstr "Autorius"
+
+#: .\models.py:115
+msgid "Date Created"
+msgstr "Data"
+
+#: .\models.py:116
+msgid "Content"
+msgstr "Tekstas"
+
+#: .\models.py:122
+msgid "Review"
+msgstr "Apžvalga"
+
+#: .\models.py:123
+msgid "Reviews"
+msgstr "Apžvalgos"
 
 #: .\templates\base.html:16
 msgid "Local Library"
@@ -32,21 +160,9 @@ msgstr "Mano bibliotekos projektas!"
 msgid "HOME"
 msgstr "PRADŽIA"
 
-#: .\templates\base.html:35
-msgid "Authors"
-msgstr "Autoriai"
-
-#: .\templates\base.html:38
-msgid "Books"
-msgstr "Knygos"
-
 #: .\templates\base.html:50
 msgid "My Books"
 msgstr "Mano knygos"
-
-#: .\templates\base.html:54
-msgid "Instances"
-msgstr "Kopijos"
 
 #: .\templates\base.html:60
 msgid "Logout"
@@ -60,7 +176,7 @@ msgstr "Registruotis"
 msgid "Login"
 msgstr "Prisijungti"
 
-#: .\templates\base.html:73
+#: .\templates\base.html:87
 msgid "Search"
 msgstr "Ieškoti"
 
